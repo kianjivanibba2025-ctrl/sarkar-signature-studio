@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CreateRouteImport } from './routes/create'
 import { Route as StoryRouteImport } from './routes/story'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoryRoute = StoryRouteImport.update({
   id: '/story',
   path: '/story',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/collection': typeof CollectionRoute
   '/contact': typeof ContactRoute
+  '/create': typeof CreateRoute
   '/story': typeof StoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/collection': typeof CollectionRoute
   '/contact': typeof ContactRoute
+  '/create': typeof CreateRoute
   '/story': typeof StoryRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/collection': typeof CollectionRoute
   '/contact': typeof ContactRoute
+  '/create': typeof CreateRoute
   '/story': typeof StoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/collection' | '/contact' | '/story'
+  fullPaths: '/' | '/collection' | '/contact' | '/create' | '/story'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/collection' | '/contact' | '/story'
-  id: '__root__' | '/' | '/collection' | '/contact' | '/story'
+  to: '/' | '/collection' | '/contact' | '/create' | '/story'
+  id: '__root__' | '/' | '/collection' | '/contact' | '/create' | '/story'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CollectionRoute: typeof CollectionRoute
   ContactRoute: typeof ContactRoute
+  CreateRoute: typeof CreateRoute
   StoryRoute: typeof StoryRoute
 }
 
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/story': {
       id: '/story'
       path: '/story'
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CollectionRoute: CollectionRoute,
   ContactRoute: ContactRoute,
+  CreateRoute: CreateRoute,
   StoryRoute: StoryRoute,
 }
 export const routeTree = rootRouteImport
