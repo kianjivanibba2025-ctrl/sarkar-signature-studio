@@ -209,7 +209,7 @@ export function getPersonality(id: string | null) {
   return PERSONALITIES.find((p) => p.id === id) ?? null;
 }
 export function getBottle(id: string) {
-  return BOTTLES.find((b) => b.id === id) ?? BOTTLES[0];
+  return BOTTLES.find((b) => b.id === id) ?? BOTTLES[0]!;
 }
 
 export function priceOf(c: Creation) {
@@ -255,7 +255,7 @@ export function generateName(c: Creation) {
     `${right}`,
     `${left} REIGN`,
   ];
-  const pick = patterns[Math.floor(Math.random() * patterns.length)];
+  const pick = patterns[Math.floor(Math.random() * patterns.length)]!;
   return pick.replace(/\s+/g, " ").trim();
 }
 

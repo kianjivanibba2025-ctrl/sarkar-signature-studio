@@ -25,12 +25,12 @@ const field =
 
 function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const [sending, setSending] = useState(false);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const next: Record<string, string> = {};
+    const next: { name?: string; email?: string; message?: string } = {};
     if (!form.name.trim()) next.name = "Please tell us your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = "A valid email is required.";
     if (form.message.trim().length < 10) next.message = "A little more detail, please.";
