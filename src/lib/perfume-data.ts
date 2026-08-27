@@ -172,8 +172,8 @@ export const LABEL_STYLES = [
 ];
 
 export const SIZES = [
-  { id: "50", name: "50 ML", multiplier: 1 },
-  { id: "100", name: "100 ML", multiplier: 1.55 },
+  { id: "50", name: "50 ML", multiplier: 0.68 },
+  { id: "100", name: "100 ML", multiplier: 1 },
 ];
 
 export interface Creation {
@@ -218,7 +218,7 @@ export function priceOf(c: Creation) {
   const label = LABEL_STYLES.find((x) => x.id === c.label)?.extra ?? 0;
   const size = SIZES.find((x) => x.id === c.size)?.multiplier ?? 1;
   const notes = c.top.length + c.heart.length + c.base.length;
-  return Math.round(((bottle.base + cap + label + notes * 60) * size) / 10) * 10;
+  return Math.round(((bottle.base + cap + label + notes * 40) * size) / 10) * 10;
 }
 
 const NOTE_WORDS: Record<string, string> = {
